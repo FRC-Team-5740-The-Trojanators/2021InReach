@@ -4,6 +4,9 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -19,7 +22,29 @@ public class Drivetrain extends SubsystemBase {
 	private WPI_VictorSPX backRight = new WPI_VictorSPX(Constants.backRightCAN);
 	private WPI_VictorSPX frontRight = new WPI_VictorSPX(Constants.frontRightCAN);
 
-  public Drivetrain() {}
+  private final SpeedControllerGroup leftDriveGroup = new SpeedControllerGroup(frontLeft, backLeft);
+  private final SpeedControllerGroup rightDriveGroup = new SpeedControllerGroup(frontRight, backRight);
+
+  private final DifferentialDrive drive = new DifferentialDrive(leftDriveGroup, rightDriveGroup);
+ 
+  public Drivetrain() 
+  {
+    VictorConfig();
+  }
+
+  public void VictorConfig()
+  {
+    frontLeft.configFactoryDefault();
+    backRight.configFactoryDefault();
+    frontRight.configFactoryDefault();
+    backLeft.configFactoryDefault();
+
+    leftDriveGroup.setInverted(true);
+    leftDriveGroup.setInverted(false);
+
+    drive.setRightSideInverted(false);
+
+  }
 
   @Override
   public void periodic() {
