@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 import com.ctre.phoenix.motorcontrol.can.*;
 
@@ -43,8 +44,52 @@ public class Drivetrain extends SubsystemBase {
     leftDriveGroup.setInverted(false);
 
     drive.setRightSideInverted(false);
-
   }
+
+  public void DriveMotors(double speed)
+  {
+    leftDriveGroup.set(speed);
+    rightDriveGroup.set(speed);
+  }
+
+  public void arcadeDrive(final double throttle, final double turn)
+  {
+    drive.arcadeDrive(throttle, turn);
+  }
+
+  public void deadbandedArcadeDrive() {
+		double throttle, turn;
+    if (RobotContainer.m_driverController.getRawAxis(Constants.kRightStickX) > 0.1	|| RobotContainer.m_driverController.getRawAxis(Constants.kRightStickX) < -0.1) 
+    {
+      if (RobotContainer.m_driverController.getRawAxis(Constants.kRightStickX) < 0) 
+      {
+				throttle = -Math.sqrt(Math.abs(RobotContainer.m_driverController.getRawAxis(Constants.kRightStickX)));
+      } else 
+      {
+				throttle = Math.sqrt(RobotContainer.m_driverController.getRawAxis(Constants.kRightStickX));
+			}
+    } else 
+    {
+			throttle = 0;
+		}
+    /* check deadband */
+
+    if (RobotContainer.m_driverController.getRawAxis(Constants.kLeftStickY) > 0.2	|| RobotContainer.m_driverController.getRawAxis(Constants.kLeftStickY) < -0.2) 
+    {
+      if (RobotContainer.m_driverController.getRawAxis(Constants.kLeftStickY) < 0) 
+      {
+				turn = -Math.sqrt(Math.abs(RobotContainer.m_driverController.getRawAxis(Constants.kLeftStickY)));
+      } else 
+      {
+				turn = Math.sqrt(RobotContainer.m_driverController.getRawAxis(Constants.kLeftStickY));
+			}
+    } else 
+    {
+			turn = 0;
+		}
+		arcadeDrive(throttle, -turn);
+	}
+
 
   @Override
   public void periodic() {
