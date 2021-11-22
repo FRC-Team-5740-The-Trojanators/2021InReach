@@ -43,7 +43,7 @@ public class Drivetrain extends SubsystemBase {
     leftDriveGroup.setInverted(true);
     leftDriveGroup.setInverted(false);
 
-    drive.setRightSideInverted(false);
+    drive.setRightSideInverted(true);
   }
 
   public void DriveMotors(double speed)
