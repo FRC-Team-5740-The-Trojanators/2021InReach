@@ -5,44 +5,28 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Drivetrain;
 
-public class DrivetrainCommand extends CommandBase {
-  /** Creates a new DrivetrainCommand. */
-  private final Drivetrain m_drivetrain; // this the drivetrain subsystem and object of the class
-
-  public DrivetrainCommand(Drivetrain drivetrain) 
-  {
-    m_drivetrain = drivetrain;
+public class AutonomousDriveCommand extends CommandBase {
+  /** Creates a new AutonomousDriveCommand. */
+  public AutonomousDriveCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(drivetrain);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() 
-  {
-
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() 
-  {
-    m_drivetrain.deadbandedArcadeDrive(); //this function comes from the DriveTrain Subsystem
-  }
+  public void execute() {}
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) 
-  {
-
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override
-  public boolean isFinished() 
-  {
+  public boolean isFinished() {
     return false;
   }
 }

@@ -29,7 +29,7 @@ public class RobotContainer {
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
-  private final DrivetrainCommand m_DrivetrainCommand = new DrivetrainCommand(m_drive);
+  private final DrivetrainCommand m_DrivetrainCommand = new DrivetrainCommand(m_drive); //addRequirments() in DriveTrainCommand says it needs Drivetrain, so it must be included here
 
   public static Joystick m_driverController = new Joystick(Constants.kDriverPort);
 
@@ -50,7 +50,6 @@ public class RobotContainer {
    */
   private void configureButtonBindings() 
   {
-
 
   }
 

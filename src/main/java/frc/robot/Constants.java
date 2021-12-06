@@ -33,5 +33,17 @@ public final class Constants {
     public static int kRightStickX = 4;
     public static int kLeftStickY = 5;
 
+    public static int[] kLeftEncoderPorts = new int[]{0,1};
+    public static int[] kRightEncoderPorts = new int[]{0,1};
+
+    public static boolean kLeftEncoderReversed = true;
+    public static boolean kRightEncoderReversed = true;
+
+    public static double kEncoderDistancePerPulse = 100000000000000000.0;
+
+
+    
+
+
 
 }
